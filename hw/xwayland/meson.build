@@ -36,6 +36,10 @@ scanner = find_program(scanner_dep.get_pkgconfig_variable('wayland_scanner'))
 protocols_dep = dependency('wayland-protocols', version: wayland_protocols_req)
 protodir = protocols_dep.get_pkgconfig_variable('pkgdatadir')
 
+cc = meson.get_compiler('c')
+drihybris_dep = cc.find_library('drihybris', required: true)
+hybris_dep = dependency('hybris-egl-platform', required: true)
+
 pointer_xml = join_paths(protodir, 'unstable', 'pointer-constraints', 'pointer-constraints-unstable-v1.xml')
 relative_xml = join_paths(protodir, 'unstable', 'relative-pointer', 'relative-pointer-unstable-v1.xml')
 gestures_xml = join_paths(protodir, 'unstable', 'pointer-gestures', 'pointer-gestures-unstable-v1.xml')
@@ -89,10 +93,15 @@ srcs += code.process(drm_lease_xml)
 srcs += code.process(shortcuts_inhibit_xml)
 srcs += code.process(xwayland_shell_xml)
 
+srcs += client_header.process('wayland-android.xml')
+srcs += code.process('wayland-android.xml')
+
 xwayland_glamor = []
 eglstream_srcs = []
 if build_glamor
     srcs += 'xwayland-glamor.c'
+    srcs += 'xwayland-glamor-hybris.c'
+
     if build_glx
         srcs += 'xwayland-glx.c'
     endif
@@ -121,6 +130,8 @@ if build_glamor
     srcs += client_header.process('drm.xml')
     srcs += code.process('drm.xml')
     xwayland_dep += gbm_dep
+    xwayland_dep += hybris_dep
+    xwayland_dep += drihybris_dep
     xwayland_glamor += glamor
 endif
 

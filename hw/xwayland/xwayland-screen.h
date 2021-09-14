@@ -128,6 +128,7 @@ struct xwl_screen {
 
     struct xwl_egl_backend gbm_backend;
     struct xwl_egl_backend eglstream_backend;
+    struct xwl_egl_backend glamor_hybris_backend;
     /* pointer to the current backend for creating pixmaps on wayland */
     struct xwl_egl_backend *egl_backend;
 
