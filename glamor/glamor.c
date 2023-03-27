@@ -1023,6 +1023,7 @@ _glamor_fds_from_pixmap(ScreenPtr screen, PixmapPtr pixmap, int *fds,
         if (!glamor_pixmap_ensure_fbo(pixmap, 0))
             return 0;
 
+#ifdef GLAMOR_HAS_GBM
         if (modifier) {
             return glamor_egl_fds_from_pixmap(screen, pixmap, fds,
                                               strides, offsets,
@@ -1035,6 +1036,7 @@ _glamor_fds_from_pixmap(ScreenPtr screen, PixmapPtr pixmap, int *fds,
 
             return fds[0] >= 0;
         }
+#endif
     default:
         break;
     }

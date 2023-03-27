@@ -394,7 +394,7 @@ glamor_gbm_bo_from_pixmap(ScreenPtr screen, PixmapPtr pixmap)
     return glamor_gbm_bo_from_pixmap_internal(screen, pixmap);
 }
 
-int
+_X_EXPORT int
 glamor_egl_fds_from_pixmap(ScreenPtr screen, PixmapPtr pixmap, int *fds,
                            uint32_t *strides, uint32_t *offsets,
                            uint64_t *modifier)

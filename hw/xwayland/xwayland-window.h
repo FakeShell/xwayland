@@ -110,10 +110,10 @@ struct xwl_window {
     OsTimerPtr window_buffers_timer;
     struct wl_output *wl_output;
     struct wl_output *wl_output_fullscreen;
-#ifdef GLAMOR_HAS_GBM
+//#ifdef GLAMOR_HAS_GBM
     struct xorg_list frame_callback_list;
     Bool present_flipped;
-#endif
+//#endif
 #ifdef XWL_HAS_LIBDECOR
     struct libdecor_frame *libdecor_frame;
 #endif

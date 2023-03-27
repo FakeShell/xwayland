@@ -1036,8 +1036,7 @@ xwl_glamor_select_glamor_hybris_backend(struct xwl_screen *xwl_screen)
 void
 xwl_glamor_select_backend(struct xwl_screen *xwl_screen, Bool use_eglstream)
 {
-    if (true) {
-        xwl_glamor_select_glamor_hybris_backend(xwl_screen);
+    if (xwl_glamor_select_glamor_hybris_backend(xwl_screen)) {
         return;
     }
 
