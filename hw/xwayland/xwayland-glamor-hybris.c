@@ -28,7 +28,8 @@
  *
  */
 
-#include "xwayland.h"
+#include "xwayland-screen.h"
+#include "xwayland-pixmap.h"
 
 #include <fcntl.h>
 #include <sys/stat.h>
